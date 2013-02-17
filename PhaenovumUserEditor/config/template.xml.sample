@@ -1,0 +1,10 @@
+<!-- Configuration which attributes will be displayed -->
+<template>
+	<attribute>
+		<ldapname>#ldapname</ldapname>
+		<aliashtmlname>#beispielname welcher im html code benutzt wird</aliashtmlname>
+		<displayname>#Name der angezeigt wird</displayname>
+		<description>#beschreibung des users </description>
+		<flags>#flags alloud: pw=Passwordfield ro= readonly sc=SaveCrypted as sha hash</flags>
+	</attribute>
+</template>

@@ -1,0 +1,20 @@
+#############################################################
+#														 	#
+# This is the Configuration file of the phaenovum Account	#
+# Editor													#
+# Please copy this file and call it settings.ini           	#
+#														 	#
+#############################################################
+
+########################
+#  LDAP Configuration  #
+########################
+ldap-server = 'ip des ldapserver'
+#notice like this 'ou=People'
+ldap-usr-group = 'ou=users'
+#notice like this 'dc=..., dc=...'
+ldap-base-dn = 'dc=ldapserver, dc=lan'
+#admin user
+ldap-admin-usr = 'admin'
+#ldap admin password
+ldap-admin-pw = 'secretpassword'
