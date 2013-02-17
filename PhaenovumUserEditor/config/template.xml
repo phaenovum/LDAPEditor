@@ -1,0 +1,33 @@
+<!-- Configuration which attributes will be displayed -->
+<template>
+	<attribute>
+		<ldapname>cn</ldapname>
+		<aliashtmlname>vollername</aliashtmlname>
+		<displayname>Voller Name</displayname>
+		<description>Voller Name des users</description>
+		<flags>ro</flags>
+	</attribute>
+	<attribute>
+		<ldapname>givenname</ldapname>
+		<aliashtmlname>vorname</aliashtmlname>
+		<displayname>Vorname</displayname>
+		<description>Vorname</description>
+		<flags>
+		</flags>
+	</attribute>
+	<attribute>
+		<ldapname>sn</ldapname>
+		<aliashtmlname>nachname</aliashtmlname>
+		<displayname>Nachname</displayname>
+		<description>Nachname</description>
+		<flags>
+		</flags>
+	</attribute>
+	<attribute>
+		<ldapname>userPassword</ldapname>
+		<aliashtmlname>password</aliashtmlname>
+		<displayname>Password</displayname>
+		<description>Password</description>
+		<flags>pw</flags>
+	</attribute>
+</template>
