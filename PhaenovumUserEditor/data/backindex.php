@@ -76,7 +76,7 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'
 				$session ->setPW($_POST['password']);
 				createAnswer("1");
 			}else{
-				createAnswer("-1","","Login Failed : "+$bind);
+				createAnswer("-1","","Login Failed : ".$bind);
 			}
 			exit();
 		case "logout":
@@ -116,7 +116,7 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'
 			if($ldapinstance->modifyUsrFields(Session::getUser(), $newattributes)){
 				createAnswer("1");
 			}else{
-				createAnswer("-1","",Session::getUser().ob_get_contents());
+				createAnswer("-1","",ob_get_contents());
 			}
 			break;
 	}
