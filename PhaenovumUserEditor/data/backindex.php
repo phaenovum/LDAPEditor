@@ -38,7 +38,7 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'
 	//starting the session
 	session_start();
 	//start muting all the outputs
-	//ob_start();
+	ob_start();
 	include './Session.php';
 	$session = new Session();
 	include './Settings.php';
@@ -50,6 +50,10 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'
 	//Include Template Parser
 	include './Template.php';
 	$template = new Template();
+	if($template ->testTemplate() != TRUE){
+		createAnswer("-1","",ob_get_contents());
+		exit();
+	}
 	include './LDAPBackend.php';
 	$ldapinstance = new LDAPBackend();
 	if(!$ldapinstance->isCorrect()){
@@ -72,7 +76,7 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'
 				$session ->setPW($_POST['password']);
 				createAnswer("1");
 			}else{
-				createAnswer("-1","","Login Failed");
+				createAnswer("-1","","Login Failed : "+$bind);
 			}
 			exit();
 		case "logout":
@@ -85,22 +89,35 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'
 			foreach ($template->getAttributes() as $attribute){
 				$result .= "<attribute>";
 				$result .= $attribute ->getXMLContent();
-				$result .= "<value>valueeeee</value>";
+				if(!$attribute->isPw())
+					$result .= "<value>".$ldapinstance->getUsrFields(Session::getUser(), $attribute->getLDAPName())."</value>";
 				$result .= "</attribute>";
 			}
 			$result .= "</template>";
 			createAnswer("1",$result);
 			exit();
 		case "savedata":
+			$ldapinstance ->bind(Session::getUser(),Session::getPW());
 			$newattributes = array();
 			$templatearray = $template->getAttributes();
 			foreach ($_POST['data'] as $attribute){
 				if(isset($templatearray[$attribute['ldapname']])){
-					//looks good
-					$newattributes[$attribute['ldapname']] = $attribute['newvalue'];
+					if($templatearray[$attribute['ldapname']]-> isSh()){
+						//do the hash
+						$newattributes[$attribute['ldapname']] = "{SHA}" . base64_encode( pack( "H*", sha1( $attribute['newvalue'] ) ) );
+					}else if($templatearray[$attribute['ldapname']]-> isRo()){
+						//nice try
+					}else{
+						//looks good
+						$newattributes[$attribute['ldapname']] = $attribute['newvalue'];
+					}
 				}
 			}
-			//TODO give the array to the ldap backend
+			if($ldapinstance->modifyUsrFields(Session::getUser(), $newattributes)){
+				createAnswer("1");
+			}else{
+				createAnswer("-1","",Session::getUser().ob_get_contents());
+			}
 			break;
 	}
 	ob_end_clean();
