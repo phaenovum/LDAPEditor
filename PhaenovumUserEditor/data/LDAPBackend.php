@@ -34,47 +34,35 @@ class LDAPBackend {
 	 * @param string $usr
 	 * @param string $pw
 	 * @return boolean
-	 * 	True on succes, False on Failer
+	 * 	True on succes, NULL if the parameters where wrong, a String when the Bind itself fails
 	 */
 	public function bind($usr = NULL,$pw = NULL){
 		if($pw != NULL && $usr != NULL){
 			//build statement
-			if($usr == 'admin'){
-				$dn = "cn=admin,".Settings::getLDAPBaseDN();
-			}else{
-				$dn = "uid=".$usr.",".Settings::getLDAPUserDirectory().
-				",".Settings::getLDAPBaseDN();
-			}
+			$dn = "uid=".$usr.",".Settings::getLDAPUserDirectory().
+			",".Settings::getLDAPBaseDN();
 			//bind with usr data
 			$result = @ldap_bind($this ->ldapcon,$dn,$pw);
-		}else{
-			//annonym bind
-			$result = @ldap_bind($this ->ldapcon);
+			if($result)
+				return true;
+			else
+				return "Bind Failed : "+ldap_error($this ->ldapcon);
 		}
-		return $result;
+		return NULL;
 	}
 	/**
 	 * Modifys Userdata from a special User
 	 *
-	 * @param unknown $usr
+	 * @param string $usr
 	 * 		The uid of the User
-	 * @param unknown $pw
-	 * 		The valid Passwort
-	 * @param unknown $field
-	 *
-	 * @param unknown $new value
-	 * 		The new value of the field
+	 * @param array $attribute the array of attributes you want to change
 	 */
 	public function modifyUsrFields($usr,$attribute){
 		//modify the choosen field.
-		$usrname = $this -> getUsrFields($usr, 'cn')[0];
-		$result = ldap_modify($this -> ldapcon,'cn='.$usrname.",".
+		$result = ldap_modify($this -> ldapcon,'uid='.$usr.",".
 				Settings::getLDAPUserDirectory().",".Settings::getLDAPBaseDN(),
 				$attribute);
-		//if the result is not false the modify was succesful
-		if(!$result){
-			return FALSE;
-		}
+		return $result;
 	}
 	/**
 	 * get A special Ldap field from the User usr
@@ -83,34 +71,18 @@ class LDAPBackend {
 	 * @return NULL
 	 */
 	public function getUsrFields($usr,$field){
-		$attribute = array($field,'objectclass');
-		//TODO Test
-		//search field
-		$result = ldap_search($this->ldapcon,Settings::getLDAPUserDirectory().",".Settings::getLDAPBaseDN(),'uid='.$usr,$attribute);
-		//look for an error
-		if(!$result){
-			return FALSE;
-		}
-		//read out the field datas
+		$attribute = array($field);
+		$result = ldap_search($this->ldapcon,Settings::getLDAPUserDirectory().",".
+				Settings::getLDAPBaseDN(),'uid='.$usr,$attribute);
 		$entry = ldap_get_entries($this->ldapcon, $result);
-		$found = false;
-		$values = $entry[0];
-		foreach($values['objectclass'] as $classname){
-			if($classname == 'bashAccount'){
-				$found = true;
-				break;
-			}
-		}
-
-		if($found){
-			if(isset($entry[0][$field])){
-				//field was not found
-				return $entry[0][$field];
-			}
-			//field was found
-			return FALSE;
+		$entry = $entry[0];
+		if(isset($entry[$field])){
+			if(is_array($entry[$field]))
+				return $entry[$field][0];
+			else
+				return $entry[$field];
 		}else{
-			return FALSE;
+			return null;
 		}
 	}
 	/**
