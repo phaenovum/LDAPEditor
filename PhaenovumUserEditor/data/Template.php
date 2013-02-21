@@ -19,8 +19,11 @@ class Template {
 		$templatearray = self::XMLtoArray($this ->text);
 		$this -> attributes = array();
 		foreach ($templatearray['TEMPLATE']['ATTRIBUTE'] as $attribute){
+			$flagstring = "";
+			if(isset($attribute['FLAGS']))
+				$flagstring = $attribute['FLAGS'];
 			$this -> attributes[$attribute['LDAPNAME']] = new Attribute($attribute['LDAPNAME'], $attribute['ALIASHTMLNAME'], $attribute['DISPLAYNAME'],
-					$attribute['FLAGS'], $attribute['DESCRIPTION']);
+					$flagstring, $attribute['DESCRIPTION']);
 		}
 	}
 	/**
@@ -140,7 +143,7 @@ class Attribute {
 				$this ->data[$flagarray] = TRUE;
 			}
 		}
-		$this ->data['description'] = $descripwtion;
+		$this ->data['description'] = $description;
 		$this ->data['aliashtmlname'] = $htmlalias;
 	}
 	function getLDAPName(){
