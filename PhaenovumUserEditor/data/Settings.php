@@ -1,5 +1,10 @@
 <?php
 define("config_file","../config/settings.ini");
+/**
+ * A Class to handle the Settings
+ * @author marcel
+ *
+*/
 class Settings {
 	public static function testFile() {
 		if(file_exists(config_file)&&is_readable(config_file))
