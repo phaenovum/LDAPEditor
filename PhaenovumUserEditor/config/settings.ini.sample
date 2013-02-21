@@ -1,9 +1,9 @@
 #############################################################
-#														 	                              #
-# This is the Configuration file of the phaenovum Account	  #
-# Editor												                          	#
+#															#
+# This is the Configuration file of the phaenovum Account	#
+# Editor													#
 # Please copy this file and call it settings.ini           	#
-#														                              	#
+#															#
 #############################################################
 
 ########################
@@ -13,3 +13,4 @@ ldap-server = 'ip des ldapserver'
 #notice like this 'ou=People'
 ldap-usr-group = 'ou=users'
 #notice like this 'dc=..., dc=...'
+ldap-base-dn = 'dc=phaenovum, dc=eu'
