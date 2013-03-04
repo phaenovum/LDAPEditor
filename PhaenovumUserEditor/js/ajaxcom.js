@@ -21,7 +21,15 @@ function AJAXCom() {
 	this.getUsrName = function getUsrName() {
 		return usrname;
 	};
-	function sentData(attributes) {
+	/**
+	 * Will transmit this data to the backend.
+	 * 
+	 * @param attributes
+	 *            The attriutes to transmit
+	 * @param event
+	 *            This function is called when the call is finished.
+	 */
+	function sentData(attributes, event) {
 		$.ajax({
 			type : "POST",
 			url : "./data/backindex.php",
@@ -31,11 +39,9 @@ function AJAXCom() {
 				data : attributes
 			}
 		}).done(function(msg) {
-			alert(msg);
+			event(msg);
+			updateData();
 		});
-		// $.each(attributes, function(key, value) {
-		// alert(value.displayname);
-		// });
 	}
 	/**
 	 * Set the Master Event which will be called when the status changed.

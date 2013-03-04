@@ -16,11 +16,14 @@
 <body onload="loaded()">
 	<div class="headbar">
 		<h1>phaenovum Account Editor</h1>
-		<div class="msgdisplay">
-			<span class="msgimage"></span>
-			<div class="msgbox"></div>
+		<div class="rightcornermenu rightcornermenu_close">
+			<div class="rightcornermenu_background"></div>
+			<div class="rightcornermenu_auto">
+				<p id="logout">Logout</p>
+				<p id="tutorial" class="enable">Tutorial</p>
+				<p id="impressum" class="enable">Impressum</p>
+			</div>
 		</div>
-		<span class="logoutbtn"></span>
 
 	</div>
 	<div class="screen"></div>

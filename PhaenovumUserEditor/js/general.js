@@ -1,26 +1,41 @@
 var passwordemptystring = "****************";
 var editorvalues;
 function loaded() {
-	// init effects
-	$("#icons li").hover(function() {
-		$(this).addClass("ui-state-hover");
+	//
+	$(".rightcornermenu_close").hover(function() {
+		$(".rightcornermenu_auto").addClass("rightcornermenu_open");
+		$(this).addClass("rightcornermenu_open");
 	}, function() {
-		$(this).removeClass("ui-state-hover");
+		$(".rightcornermenu_auto").removeClass("rightcornermenu_open");
+		$(this).removeClass("rightcornermenu_open");
 	});
 	// wait that you know that a user is logged in or not
 	_ajaxcom = new AJAXCom();
 	// init all functions of the board
+	// this will allways will be called if a statuscheck will be perfomed they
+	// are performed after login logout and the saving
 	var eventparam = function() {
 		// what to do if there is new data
 		// if a user is logged in refresh the sidebar
 		if (_ajaxcom.getLoginState() == "1") {
 			// user logged in
 			showInfoMsg("Hallo " + _ajaxcom.getUsrName());
+			// enable logout
+			$('#logout').removeClass("disable");
+			$('#logout').addClass("enable");
+			$("#logout").click(function() {
+				_ajaxcom.logout();
+			});
 			_ajaxcom.getFieldScreen(function() {
 				displayUsrEditor();
 			});
 		} else {
 			// no user is logged in
+			// disable logoutbutton
+			$('#logout').removeClass("disable");
+			$('#logout').addClass("disable");
+			$("#logout").click(function() {
+			});
 			$(".screen").html(centerFrame());
 			$(".content").html(getLoginScreen());
 			initLoginScreen();
@@ -30,9 +45,16 @@ function loaded() {
 	_ajaxcom.setEvent(eventparam);
 	// call to update the data.
 	_ajaxcom.updatedata();
-	$(".logoutbtn").click(function() {
-		_ajaxcom.logout();
+
+	$("#tutorial").click(function() {
+		showTutorial();
 	});
+	$("#impressum").click(function() {
+		alert("Showing Impressum");
+	});
+}
+function showTutorial() {
+	alert("Showing Tutorial");
 }
 /**
  * This will display the User Editor
@@ -45,7 +67,7 @@ function displayUsrEditor() {
 				+ "<br>";
 	});
 	htmlcode += getUpdateButton();
-	$(".screen").html("<div class='editor'>"+htmlcode+'</div>');
+	$(".screen").html("<div class='editor'>" + htmlcode + '</div>');
 	initUpdateButton(0);
 }
 /**
@@ -160,6 +182,7 @@ function initLoginScreen() {
 	$('#loginbtn').click(function() {
 		_ajaxcom.login($('#usrname').val(), $('#usrpw').val());
 	});
+	// disable logout
 }
 /**
  * Will return the HTML Code. The middle place can be called by the class
@@ -220,7 +243,11 @@ function initUpdateButton(phase) {
 					counter++;
 				}
 			});
-			_ajaxcom.sentData(attributes);
+			_ajaxcom.sentData(attributes, function(msg) {
+				_ajaxcom.getFieldScreen(function() {
+					displayUsrEditor();
+				});
+			});
 		});
 	}
 }
@@ -231,7 +258,7 @@ function initUpdateButton(phase) {
  */
 function showErrorMsg(error) {
 	// TODO set the right image for the image div
-	$(".msgbox").html(error);
+	// $(".msgbox").html(error);
 }
 /**
  * Will display an Message with Waiting icon
@@ -240,7 +267,7 @@ function showErrorMsg(error) {
  */
 function showWaitingMsg(message) {
 	// TODO set the right image for the image div
-	$(".msgbox").html(message);
+	// $(".msgbox").html(message);
 }
 /**
  * Will display an Info Message
@@ -249,5 +276,5 @@ function showWaitingMsg(message) {
  */
 function showInfoMsg(message) {
 	// TODO set the right image for the image div
-	$(".msgbox").html(message);
+	// $(".msgbox").html(message);
 }
