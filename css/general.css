@@ -31,6 +31,65 @@ input[type=text],input[type=password] {
 	cursor: pointer;
 	overflow: hidden;
 }
+#nav_menu {
+	position: absolute;
+	right: 5px;
+	top: 2px;
+	height: 30px;
+	width: 120px;
+	list-style: none outside none;	
+	cursor: pointer;
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0px;
+	padding-top: 15px; 
+	margin: 0px;	
+}
+
+#nav_menu a {
+	text-decoration: none;
+	color: Black;
+	display: block
+}
+#nav_menu , #nav_menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#nav_menu li:hover ul{
+	left: 0;
+	top: 30px;
+	width: 120px;
+}
+
+#nav_menu ul {
+    left: -9999px;
+    position: absolute;
+    top: -9999px;
+    z-index: 2;
+}
+
+#nav_menu ul li {
+    background: none repeat scroll 0 0 #838383;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+
+#nav_menu li a {
+
+    	border-color: Black;
+	background-color: Gray;
+    	color: #FFFFFF;
+    	display: block;
+    	height: 30px;
+    	line-height: 30px;
+    	outline: medium none;
+    	text-align: center;
+    	text-decoration: none;
+	
+}
 
 .rightcornermenu_close {
 	height: 40px;

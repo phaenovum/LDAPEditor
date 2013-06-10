@@ -1,5 +1,6 @@
 var passwordemptystring = "****************";
 var editorvalues;
+var _ajaxcom;
 function loaded() {
 	//
 	$(".rightcornermenu_close").hover(function() {
@@ -9,8 +10,8 @@ function loaded() {
 		$(".rightcornermenu_auto").removeClass("rightcornermenu_open");
 		$(this).removeClass("rightcornermenu_open");
 	});
-	// wait that you know that a user is logged in or not
 	_ajaxcom = new AJAXCom();
+	renewmenu();
 	// init all functions of the board
 	// this will allways will be called if a statuscheck will be perfomed they
 	// are performed after login logout and the saving
@@ -20,22 +21,11 @@ function loaded() {
 		if (_ajaxcom.getLoginState() == "1") {
 			// user logged in
 			showInfoMsg("Hallo " + _ajaxcom.getUsrName());
-			// enable logout
-			$('#logout').removeClass("disable");
-			$('#logout').addClass("enable");
-			$("#logout").click(function() {
-				_ajaxcom.logout();
-			});
 			_ajaxcom.getFieldScreen(function() {
 				displayUsrEditor();
 			});
 		} else {
 			// no user is logged in
-			// disable logoutbutton
-			$('#logout').removeClass("disable");
-			$('#logout').addClass("disable");
-			$("#logout").click(function() {
-			});
 			$(".screen").html(centerFrame());
 			$(".content").html(getLoginScreen());
 			initLoginScreen();
@@ -45,7 +35,32 @@ function loaded() {
 	_ajaxcom.setEvent(eventparam);
 	// call to update the data.
 	_ajaxcom.updatedata();
-
+}
+function renewmenu(){
+	var rest = "";
+	if(_ajaxcom.getLoginState == "1"){
+		rest += "<li> <a href=\"#\" id=\"logout\">Logout</a></li>";
+		$("#logout").click(function() {
+			_ajaxcom.logout();
+		});	
+	}
+	rest += "<li> <a href='#' id='reload_editor'>Startseite</a></li>";
+	rest += "<li> <a href=\"#\" id=\"tutorial\">Turorial</a></li>";
+	rest += "<li> <a href=\"#\" id=\"impressum\">Impressum</a></li>";
+	$("#submenu").html(rest);
+	
+	$("#reload_editor").click(function(){
+			if(_ajaxcom.getLoginState == "1"){
+				_ajaxcom.getFieldScreen(function() {
+					displayUsrEditor();
+				});
+			}else{
+				$(".screen").html(centerFrame());
+				$(".content").html(getLoginScreen());
+				initLoginScreen();
+			}
+			
+	});	
 	$("#tutorial").click(function() {
 		showTutorial();
 	});
@@ -67,7 +82,7 @@ function displayUsrEditor() {
 				+ "<br>";
 	});
 	htmlcode += getUpdateButton();
-	$(".screen").html("<div class='editor'>" + htmlcode + '</div>');
+	$(".screen").html("<div class='editor'> "+ htmlcode + '</div>');
 	initUpdateButton(0);
 }
 /**
