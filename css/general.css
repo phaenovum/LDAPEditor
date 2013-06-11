@@ -14,28 +14,12 @@ input[type=text],input[type=password] {
 	border-color: gray;
 }
 
-.disable {
-	background: black;
-}
-
-.enable {
-	background: gray;
-}
-
-.rightcornermenu {
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	width: 120px;
-	background: transparent;
-	cursor: pointer;
-	overflow: hidden;
-}
 #nav_menu {
 	position: absolute;
 	right: 5px;
-	top: 2px;
-	height: 30px;
+	top: 5px;
+	height: 40px;
+	bottom: 5px;
 	width: 120px;
 	list-style: none outside none;	
 	cursor: pointer;
@@ -43,86 +27,51 @@ input[type=text],input[type=password] {
 	text-align: center;
 	vertical-align: middle;
 	padding: 0px;
-	padding-top: 15px; 
 	margin: 0px;	
 }
-
 #nav_menu a {
 	text-decoration: none;
 	color: Black;
 	display: block
 }
 #nav_menu , #nav_menu ul {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
 }
 #nav_menu li:hover ul{
 	left: 0;
-	top: 30px;
+	top: 40px;
 	width: 120px;
+	background-color:Black;
 }
-
 #nav_menu ul {
-    left: -9999px;
-    position: absolute;
-    top: -9999px;
-    z-index: 2;
+    	left: -9999px;
+    	position: absolute;
+    	top: -9999px;
+    	z-index: 2;
 }
 
 #nav_menu ul li {
-    background: none repeat scroll 0 0 #838383;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-    width: 100%;
+    	background: none repeat scroll 0 0 #838383;
+    	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    	width: 100%;
+}
+#nav_menu li ul li {
+	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
-
 #nav_menu li a {
-
-    	border-color: Black;
 	background-color: Gray;
     	color: #FFFFFF;
     	display: block;
-    	height: 30px;
+    	height: 40px;
     	line-height: 30px;
     	outline: medium none;
     	text-align: center;
     	text-decoration: none;
-	
-}
-
-.rightcornermenu_close {
-	height: 40px;
-}
-
-.rightcornermenu_background {
-	position: absolute;
-	left: 0xp;
-	top: 0px;
-	bottom: 0px;
-	width: 120px;
-	cursor: pointer;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	background: gray;
-	opacity: 0.5;
-	filter: alpha(opacity =     50);
-	overflow: hidden;
-	cursor: pointer;
-}
-
-.rightcornermenu_auto {
-	position: absolute;
-	left: 0xp;
-	top: 0px;
-	height: 40px;
-	width: 120px;
-	z-index: 2;
-}
-
-.rightcornermenu_open {
-	height: 110px;
+	padding-top: 2px;
 }
 
 .notification {
@@ -134,17 +83,6 @@ input[type=text],input[type=password] {
 	background: black;
 }
 /* The logout Button! TODO good image and disable in login screen*/
-.rightcornermenu p {
-	margin: 5px;
-	width: 110px;
-	height: 30px;
-	cursor: pointer;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	text-align: left;
-}
-
 .logoutbtn_clicked {
 	background: Red;
 }
