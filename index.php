@@ -18,7 +18,7 @@
 		<h1>phaenovum Account Editor</h1>
 		<ul id="nav_menu">
 			<li>
-				<a href="#">Menu</a>
+				<a id="menu_headline" href="#">Menu</a>
 				<ul id="submenu">
 					<!--Javascript will fill in the menupoint -->
 				<!--<li>

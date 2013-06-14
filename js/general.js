@@ -41,6 +41,9 @@ function renewmenu(){
 	var rest = "";
 	if(_ajaxcom.getLoginState() == "1"){
 		rest += "<li> <a href=\"#\" id=\"logout\">Logout</a></li>";
+		$("#menu_headline").text("Menu(Logout)");
+	}else{
+		$("#menu_headline").text("Menu");	
 	}	
 	rest += "<li> <a href='#' id='reload_editor'>Startseite</a></li>";
 	rest += "<li> <a href=\"#\" id=\"tutorial\">Turorial</a></li>";
