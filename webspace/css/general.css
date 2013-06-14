@@ -1,0 +1,203 @@
+@CHARSET "UTF-8";
+
+body {
+	font: normal 87.5%/1.4 Arial, sans-serif;
+}
+
+input[type=text],input[type=password] {
+	border-style: solid;
+	border-color: gray;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	border-color: gray;
+}
+.impressum p {
+	padding-left: 30px;
+}
+#nav_menu {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	height: 40px;
+	bottom: 5px;
+	width: 120px;
+	list-style: none outside none;	
+	cursor: pointer;
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0px;
+	margin: 0px;	
+}
+#nav_menu a {
+	text-decoration: none;
+	color: Black;
+	display: block
+}
+#nav_menu , #nav_menu ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+#nav_menu li:hover ul{
+	left: 0;
+	top: 40px;
+	width: 120px;
+	background-color:Black;
+}
+#nav_menu ul {
+    	left: -9999px;
+    	position: absolute;
+    	top: -9999px;
+    	z-index: 2;
+}
+
+#nav_menu ul li {
+    	background: none repeat scroll 0 0 #838383;
+    	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    	width: 100%;
+}
+#nav_menu li ul li {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+#nav_menu li a {
+	background-color: Gray;
+    	color: #FFFFFF;
+    	display: block;
+    	height: 40px;
+    	line-height: 30px;
+    	outline: medium none;
+    	text-align: center;
+    	text-decoration: none;
+	padding-top: 2px;
+}
+.#fieldcontainer{
+	margin-left: 20px;
+}
+.notification {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	bottom: 10px;
+	width: 100px;
+	background: black;
+}
+/* The logout Button! TODO good image and disable in login screen*/
+.logoutbtn_clicked {
+	background: Red;
+}
+/*Settings for the headline in the  headbar*/
+.headbar {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	height: 40px;
+	padding: 5px;
+	background: #F70;
+	box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.99);
+	-moz-box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.99);
+	-webkit-box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.99);
+}
+
+.headbar h1 {
+	float: left;
+	padding: 0px;
+	margin: 0px;
+}
+
+.msgdisplay {
+	float: left;
+	position: absolute;
+	right: 50px;
+	width: 400px;
+	top: 0px;
+	bottom: 0px;
+	padding: auto;
+}
+
+.msgimage {
+	position: absolute;
+	border: none;
+	top: 5px;
+	left: 5px;
+	height: 30px;
+	width: 30px;
+	top: 5px;
+}
+
+.msgbox {
+	position: absolute;
+	top: 5px;
+	left: 70px;
+	height: 30px;
+	right: 5px;
+	float: left;
+}
+
+.loading {
+	
+}
+/*Settings for the screen section*/
+.screen {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	padding: 50px;
+}
+/*Settings for the content that this is in the middle etc.*/
+.content_background {
+	position: absolute;
+	height: 200px;
+	width: 400px;
+	margin: -100px 0 0 -200px;
+	top: 50%;
+	left: 50%;
+	background: gray;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	opacity: 0.5;
+	filter: alpha(opacity =                                     50);
+}
+
+.content {
+	position: absolute;
+	height: 100px;
+	width: 400px;
+	margin: -50px 0 0 -200px;
+	top: 50%;
+	left: 50%;
+	padding: auto;
+	text-align: center;
+}
+/*Seperator between the fields*/
+.seperator {
+	height: 20px;
+	width: 300px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	background: #f2f6f8; /* Old browsers */
+
+	background: -moz-linear-gradient(left,  #f2f6f8 0%, #808080 11%, #808080 91%, #e0eff9 100%); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f2f6f8), color-stop(11%,#808080), color-stop(91%,#808080), color-stop(100%,#e0eff9)); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(left,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(left,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(left,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* IE10+ */
+
+	background: linear-gradient(to right,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* W3C */
+
+	:filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=1 ); /* IE6-9 */
+
+
+}
