@@ -11,7 +11,6 @@ function loaded() {
 		$(this).removeClass("rightcornermenu_open");
 	});
 	_ajaxcom = new AJAXCom();
-	renewmenu();
 	// init all functions of the board
 	// this will allways will be called if a statuscheck will be perfomed they
 	// are performed after login logout and the saving
@@ -30,26 +29,29 @@ function loaded() {
 			$(".content").html(getLoginScreen());
 			initLoginScreen();
 		}
+		renewmenu();
 	};
 	// set the Event which is called if the Datas are updated
 	_ajaxcom.setEvent(eventparam);
 	// call to update the data.
 	_ajaxcom.updatedata();
-
+	renewmenu();
 }
 function renewmenu(){
 	var rest = "";
-	if(_ajaxcom.getLoginState == "1"){
+	if(_ajaxcom.getLoginState() == "1"){
 		rest += "<li> <a href=\"#\" id=\"logout\">Logout</a></li>";
-		$("#logout").click(function() {
-			_ajaxcom.logout();
-		});	
-	}
+	}	
 	rest += "<li> <a href='#' id='reload_editor'>Startseite</a></li>";
 	rest += "<li> <a href=\"#\" id=\"tutorial\">Turorial</a></li>";
 	rest += "<li> <a href=\"#\" id=\"impressum\">Impressum</a></li>";
 	$("#submenu").html(rest);
 	
+	if(_ajaxcom.getLoginState() == "1"){
+		$("#logout").click(function() {
+			_ajaxcom.logout();
+		});	
+	}
 	$("#reload_editor").click(function(){
 			if(_ajaxcom.getLoginState == "1"){
 				_ajaxcom.getFieldScreen(function() {
