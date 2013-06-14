@@ -35,6 +35,7 @@ function loaded() {
 	_ajaxcom.setEvent(eventparam);
 	// call to update the data.
 	_ajaxcom.updatedata();
+
 }
 function renewmenu(){
 	var rest = "";
@@ -65,11 +66,16 @@ function renewmenu(){
 		showTutorial();
 	});
 	$("#impressum").click(function() {
-		alert("Showing Impressum");
+		showImpressum();
 	});
 }
 function showTutorial() {
-	alert("Showing Tutorial");
+	$(".screen").html("<div class='impressum'> <h1> Tutorial </h1> </br> Url: <a href='http://stzedn.de/isl/organisation/wlananmeldung'> http://stzedn.de/isl/organisation/wlananmeldung  </a>  </div>");
+}
+function showImpressum(){
+	$(".screen").html("<div class='impressum'><h1> Impressum </h1> </br> </br> <h2> Verwaltung</h2> </br> <p> Daniel Haß </p> <p> Lars Möllendorf </p><p> Marcel Hollerbach </p>"+
+	"</br></br> <h2> Code </h2> <p>Marcel Hollerbach </p><p>Daniel Haß</p></div>"
+	+"</br></br> Kontakt-Email:<a href='mailto:it@phaenovum.eu'>it@phaenovum.eu</a>");
 }
 /**
  * This will display the User Editor

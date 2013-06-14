@@ -85,40 +85,49 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || $_SERVER['HTTP_X_REQUESTED_WITH'
 			$ldapinstance->logout();
 			exit();
 		case "displayUserData":
-			$result = "<template>";
-			foreach ($template->getAttributes() as $attribute){
-				$result .= "<attribute>";
-				$result .= $attribute ->getXMLContent();
-				if(!$attribute->isPw())
-					$result .= "<value>".$ldapinstance->getUsrFields(Session::getUser(), $attribute->getLDAPName())."</value>";
-				$result .= "</attribute>";
+			if(!Session::getUser()){
+				createAnswer("-1","No User logged in!");
+			}else{
+				$result = "<template>";
+				foreach ($template->getAttributes() as $attribute){
+					$result .= "<attribute>";
+					$result .= $attribute ->getXMLContent();
+					if(!$attribute->isPw())
+						$result .= "<value>".$ldapinstance->getUsrFields(Session::getUser(), $attribute->getLDAPName())."</value>";
+					$result .= "</attribute>";
+				}
+				$result .= "</template>";
+				createAnswer("1",$result);
 			}
-			$result .= "</template>";
-			createAnswer("1",$result);
 			exit();
 		case "savedata":
-			$ldapinstance ->bind(Session::getUser(),Session::getPW());
-			$newattributes = array();
-			$templatearray = $template->getAttributes();
-			foreach ($_POST['data'] as $attribute){
-				if(isset($templatearray[$attribute['ldapname']])){
-					if($templatearray[$attribute['ldapname']]-> isSh()){
-						//do the hash
-						$newattributes[$attribute['ldapname']] = "{SHA}" . base64_encode( pack( "H*", sha1( $attribute['newvalue'] ) ) );
-					}else if($templatearray[$attribute['ldapname']]-> isRo()){
-						//nice try
-					}else{
-						//looks good
-						$newattributes[$attribute['ldapname']] = $attribute['newvalue'];
+			if(!Session::getUser()){
+				createAnswer("-1","No User logged in!");
+			}else{
+				$ldapinstance ->bind(Session::getUser(),Session::getPW());
+				$newattributes = array();
+				$templatearray = $template->getAttributes();
+				foreach ($_POST['data'] as $attribute){
+					if(isset($templatearray[$attribute['ldapname']])){
+						if($templatearray[$attribute['ldapname']]-> isSh()){
+							//do the hash
+							$newattributes[$attribute['ldapname']] = "{SHA}" . base64_encode( pack( "H*", sha1( $attribute['newvalue'] ) ) );
+						}else if($templatearray[$attribute['ldapname']]-> isRo()){
+							//nice try
+						}else{
+							//looks good
+							$newattributes[$attribute['ldapname']] = $attribute['newvalue'];
+						}
 					}
 				}
+				if($ldapinstance->modifyUsrFields(Session::getUser(), $newattributes)){
+					createAnswer("1");
+				}else{
+					createAnswer("-1","",ob_get_contents());
+				}
 			}
-			if($ldapinstance->modifyUsrFields(Session::getUser(), $newattributes)){
-				createAnswer("1");
-			}else{
-				createAnswer("-1","",ob_get_contents());
-			}
-			break;
+				break;
+
 	}
 	ob_end_clean();
 }

@@ -13,7 +13,9 @@ input[type=text],input[type=password] {
 	padding: 5px;
 	border-color: gray;
 }
-
+.impressum p {
+	padding-left: 30px;
+}
 #nav_menu {
 	position: absolute;
 	right: 5px;
