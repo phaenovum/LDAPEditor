@@ -155,24 +155,24 @@ function displayUpdateScreen() {
  * @returns {String}
  */
 function getField(aliashtmlname, displayname, description, flags, value) {
-	var result = displayname + ': <input type="text" id="' + aliashtmlname
+	var result = displayname + '</br> <input type="text" id="' + aliashtmlname
 			+ '" value="' + value + '" />' + flags;
 	var flagkeywords = [ 'pw', 'ro' ];
 	var flagfunctions = [
 			function() {
-				// password will not be transmitted
+				// password will not be transmitted so insert an static value 
 				result = displayname
-						+ ': <input  type="password" id="'
+						+ '</br> <input  type="password" id="'
 						+ aliashtmlname
 						+ '-check1" value="'
 						+ passwordemptystring
 						+ '"\
-	                    	 /><br> Wiederholung : <input type="password" id="'
+	                    	 /><br> <input type="password" id="'
 						+ aliashtmlname + '-check2" value="'
 						+ passwordemptystring + '" />';
 			},
 			function() {
-				result = displayname + ': <input type="text" id="'
+				result = displayname + '</br> <input type="text" id="'
 						+ aliashtmlname + '" value="' + value + '" readonly />';
 			} ];
 	var numberflags = new Array();
@@ -181,7 +181,7 @@ function getField(aliashtmlname, displayname, description, flags, value) {
 			flagfunctions[flagkeywords.indexOf(possibleflag)]();
 		}
 	});
-	result = '<div class="seperator"></div>' + result;
+	result = '<div class="seperator"></div><div class="fieldcontainer">' + result+"</div>";
 	return result;
 }
 /**

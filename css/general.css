@@ -75,7 +75,9 @@ input[type=text],input[type=password] {
     	text-decoration: none;
 	padding-top: 2px;
 }
-
+.#fieldcontainer{
+	margin-left: 20px;
+}
 .notification {
 	position: absolute;
 	right: 10px;
@@ -181,5 +183,21 @@ input[type=text],input[type=password] {
 	width: 300px;
 	margin-top: 20px;
 	margin-bottom: 10px;
-	background: black;
+	background: #f2f6f8; /* Old browsers */
+
+	background: -moz-linear-gradient(left,  #f2f6f8 0%, #808080 11%, #808080 91%, #e0eff9 100%); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f2f6f8), color-stop(11%,#808080), color-stop(91%,#808080), color-stop(100%,#e0eff9)); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(left,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(left,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(left,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* IE10+ */
+
+	background: linear-gradient(to right,  #f2f6f8 0%,#808080 11%,#808080 91%,#e0eff9 100%); /* W3C */
+
+	:filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=1 ); /* IE6-9 */
+
+
 }
