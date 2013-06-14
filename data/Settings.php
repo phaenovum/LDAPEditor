@@ -1,5 +1,5 @@
 <?php
-define("config_file","../../config/settings.ini");
+define("config_file","../config/settings.ini");
 /**
  * A Class to handle the Settings
  * @author marcel
