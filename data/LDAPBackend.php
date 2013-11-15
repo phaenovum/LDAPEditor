@@ -19,7 +19,7 @@ class LDAPBackend {
 			}
 			//TODO settings flag for use tls or not
 			if(Settings::getLDAPUseTLS()){
-				ldap_start_tls($this->ldapcon)
+				ldap_start_tls($this->ldapcon);
 			}
 
 		} else{
