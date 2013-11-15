@@ -17,6 +17,11 @@ class LDAPBackend {
 				echo "Fatal Error: LDAP Server nicht erreichbar";
 				echo "reason: ".ldap_error($this -> ldapcon);
 			}
+			//TODO settings flag for use tls or not
+			if(Settings::getLDAPUseTLS()){
+				ldap_start_tls($this->ldapcon)
+			}
+
 		} else{
 			echo "Fatal Error: LDAP Server nicht erreichbar";
 			echo "readson: Host is Down ";

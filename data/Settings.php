@@ -27,5 +27,9 @@ class Settings {
 		$ini = parse_ini_file(config_file);
 		return $ini['ldap-base-dn'];
 	}
+	public static function getLDAPUseTLS() {
+		$ini = parse_ini_file(config_file);
+		return $ini['ldap-use-tls'];
+	}
 }
 ?>
