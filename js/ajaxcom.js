@@ -143,7 +143,7 @@ function AJAXCom() {
 							password = true;
 						} else if (key == 1) {
 							readonly = true;
-						} else if (key == 2)
+						} else if (key == 2) {
                      tf = true;
                   }
 					}

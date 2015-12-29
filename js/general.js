@@ -114,7 +114,7 @@ function displayUpdateScreen() {
 						value = $("#" + attribute.aliashtmlname + "-check1")
 								.val();
 						originaldata = passwordemptystring;
-					} else if (attribute.truefalse) {
+					} else if (attribute.truefalse == true) {
                   value = "FALSE";
                   if ($("#" + attribute.aliashtmlname).checked)
                     value = "TRUE";
@@ -188,7 +188,7 @@ function getField(aliashtmlname, displayname, description, flags, value) {
            var attr = "";
            if (value == "TRUE") attr = "checked"
            result = displayname + '</br> <input type="checkbox" id="'+ 
-             aliashtmlname +'" value="'+value+'" '+attr+'> I have a bike<br>';
+             aliashtmlname +'" value="'+value+'" '+attr+'> Ja <br>';
          } ];
 	var numberflags = new Array();
 	$.each(flagkeywords, function(key, possibleflag) {
