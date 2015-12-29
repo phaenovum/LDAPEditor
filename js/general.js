@@ -46,7 +46,7 @@ function renewmenu(){
 		$("#menu_headline").text("Menu");	
 	}	
 	rest += "<li> <a href='#' id='reload_editor'>Startseite</a></li>";
-	rest += "<li> <a href=\"#\" id=\"tutorial\">Turorial</a></li>";
+	rest += "<li> <a href=\"#\" id=\"tutorial\">Tutorial</a></li>";
 	rest += "<li> <a href=\"#\" id=\"impressum\">Impressum</a></li>";
 	$("#submenu").html(rest);
 	
