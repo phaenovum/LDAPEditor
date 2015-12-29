@@ -135,8 +135,8 @@ function displayUpdateScreen() {
 
 						} else {
 							result += attribute.displayname + " "
-									+ attribute.value + " "
-									+ $("#" + attribute.aliashtmlname).val()
+									+ originaldata + " "
+									+ value
 									+ "<br>";
 						}
 						attribute.newvalue = value;
