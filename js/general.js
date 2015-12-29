@@ -116,7 +116,7 @@ function displayUpdateScreen() {
 						originaldata = passwordemptystring;
 					} else if (attribute.truefalse == true) {
                   value = "FALSE";
-                  if ($("#" + attribute.aliashtmlname).checked)
+                  if ($("#" + attribute.aliashtmlname).prop("checked") == true)
                     value = "TRUE";
                }
 					if (value != originaldata && attribute.readonly == false) {
