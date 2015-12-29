@@ -78,7 +78,7 @@ class LDAPBackend {
 	public function getUsrFields($usr,$field){
       //enough of stupid bugs! php-ldap get a string with cases and output a string casted to lower case
       //this leads here to bugs - stupid bugs - since the doc is not telling this cast
-      $field = strtolower($field)
+      $field = strtolower($field);
       $attribute = array($field);
 		$result = ldap_search($this->ldapcon,Settings::getLDAPUserDirectory().",".
 				Settings::getLDAPBaseDN(),'uid='.$usr,$attribute);
