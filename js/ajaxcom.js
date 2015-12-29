@@ -132,17 +132,20 @@ function AJAXCom() {
 			var htmlcode = "";
 			attributes = new Array();
 			$(msg).find('template').children().each(function() {
-				var flagkeywords = [ 'pw', 'ro' ];
+				var flagkeywords = ['pw', 'ro', 'tf'];
 				var flags = $(this).find("flags").text();
 				var password = false;
 				var readonly = false;
+            var tf = false;
 				$.each(flagkeywords, function(key, possibleflag) {
 					if (flags.indexOf(possibleflag) != -1) {
 						if (key == 0) {
 							password = true;
 						} else if (key == 1) {
 							readonly = true;
-						}
+						} else if (key == 2)
+                     tf = true;
+                  }
 					}
 				});
 				attributes[attributes.length] = {
@@ -153,6 +156,7 @@ function AJAXCom() {
 					flags : flags,
 					password : password,
 					readonly : readonly,
+               truefalse : tf,
 					newvalue : "",
 					value : $(this).find("value").text()
 				}

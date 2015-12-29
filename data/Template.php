@@ -130,7 +130,7 @@ class Template {
  */
 class Attribute {
 	private $data;
-	private $flagsarray = array("pw","ro","sh");
+	private $flagsarray = array("pw","ro","sh","tf");
 	function __construct($ldapname,$htmlalias,$displayname,$flags,$description){
 		$this -> data = array();
 		$this ->data['ldapname'] = $ldapname;
@@ -154,7 +154,10 @@ class Attribute {
 	}
 	function getFlags(){
 		return $this ->data['flags'];
-	}
+   }
+   function isTf(){
+      return $this ->data['tf'];
+   }
 	function isPw(){
 		return $this ->data['pw'];
 	}

@@ -114,7 +114,11 @@ function displayUpdateScreen() {
 						value = $("#" + attribute.aliashtmlname + "-check1")
 								.val();
 						originaldata = passwordemptystring;
-					}
+					} else if (attribute.truefalse) {
+                  value = "FALSE";
+                  if ($("#" + attribute.aliashtmlname).checked)
+                    value = "TRUE";
+               }
 					if (value != originaldata && attribute.readonly == false) {
 						if (attribute.password == true) {
 							if ($("#" + attribute.aliashtmlname + "-check1")
@@ -162,7 +166,7 @@ function displayUpdateScreen() {
 function getField(aliashtmlname, displayname, description, flags, value) {
 	var result = displayname + '</br> <input type="text" id="' + aliashtmlname
 			+ '" value="' + value + '" />' + flags;
-	var flagkeywords = [ 'pw', 'ro' ];
+	var flagkeywords = [ 'pw', 'ro', 'tf' ];
 	var flagfunctions = [
 			function() {
 				// password will not be transmitted so insert an static value 
@@ -179,7 +183,13 @@ function getField(aliashtmlname, displayname, description, flags, value) {
 			function() {
 				result = displayname + '</br> <input type="text" id="'
 						+ aliashtmlname + '" value="' + value + '" readonly />';
-			} ];
+			},
+         function() {
+           var attr = "";
+           if (value == "TRUE") attr = "checked"
+           result = displayname + '</br> <input type="checkbox" id="'+ 
+             aliashtmlname +'" value="'+value+'" '+attr+'> I have a bike<br>';
+         } ];
 	var numberflags = new Array();
 	$.each(flagkeywords, function(key, possibleflag) {
 		if (flags.indexOf(possibleflag) != -1) {
