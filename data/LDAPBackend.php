@@ -83,15 +83,7 @@ class LDAPBackend {
 		$result = ldap_search($this->ldapcon,Settings::getLDAPUserDirectory().",".
 				Settings::getLDAPBaseDN(),'uid='.$usr,$attribute);
 		$entry = ldap_get_entries($this->ldapcon, $result);
-		$entry = $entry[0];
-		if(isset($entry[$field])){
-			if(is_array($entry[$field]))
-				return $entry[$field][0];
-			else
-				return $entry[$field];
-		}else{
-			return null;
-		}
+      return $entry[0][$field][0];
 	}
 	/**
 	 * Returns an Array with the names of all the Users.
